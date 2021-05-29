@@ -11,7 +11,7 @@ const AllEvents = () => {
   const fetchAllEvents = async () => {
     try {
       const response = await fetch(
-        `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=324&apikey=L6uec1PoCkdzN7Dp1iyAOPXogvXTwP5m`
+        `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=L6uec1PoCkdzN7Dp1iyAOPXogvXTwP5m`
       );
       const data = await response.json();
 
