@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Events.css";
 import SingleEvent from "./SingleEvent";
-import Error from "./Error";
 
 const AllEvents = () => {
   const [events, setEvents] = useState([]);
@@ -26,7 +25,7 @@ const AllEvents = () => {
     <div>
       <div className="button">
         <button onClick={fetchAllEvents} className="btn_events">
-          Get all the music events
+          Get all the events in the United States
         </button>
       </div>
       <div className="events">
