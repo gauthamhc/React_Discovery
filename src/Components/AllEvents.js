@@ -1,21 +1,19 @@
 import React, { useState } from "react";
-import "./Events.css";
+import axios from "axios";
+import "../Styles/Events.css";
 import SingleEvent from "./SingleEvent";
 
 const AllEvents = () => {
   const [events, setEvents] = useState([]);
-
-  // const API_KEY = "L6uec1PoCkdzN7Dp1iyAOPXogvXTwP5m";
+  // const [ids, setIds] = useState([]);
 
   const fetchAllEvents = async () => {
     try {
-      const response = await fetch(
-        `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=L6uec1PoCkdzN7Dp1iyAOPXogvXTwP5m`
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}&apikey=${process.env.REACT_APP_API_KEY}`
       );
-      const data = await response.json();
-
+      const data = response.data;
       setEvents(data._embedded.events);
-      console.log(events);
     } catch (error) {
       console.log(error);
     }
