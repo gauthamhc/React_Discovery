@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/Events.css";
-import SingleEvent from "./SingleEvent";
+import EventList from "./EventList";
+import EventListHeading from "./EventListHeading";
+import SearchBox from "./SearchBox";
+import AddFavourite from "./AddFavourite";
 
 const AllEvents = () => {
   const [events, setEvents] = useState([]);
-  // const [ids, setIds] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
-  const fetchAllEvents = async () => {
+  const fetchAllEvents = async (searchValue) => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}&apikey=${process.env.REACT_APP_API_KEY}`
+        `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=${searchValue}&dmaId=324&apikey=${process.env.REACT_APP_API_KEY}`
       );
       const data = response.data;
       setEvents(data._embedded.events);
@@ -19,24 +23,20 @@ const AllEvents = () => {
     }
   };
 
+  useEffect(() => {
+    fetchAllEvents(searchValue);
+  }, [searchValue]);
   return (
     <div>
-      <div className="button">
-        <button onClick={fetchAllEvents} className="btn_events">
-          Get all the events in the United States
-        </button>
-      </div>
+      <EventListHeading heading="events" />
+      <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="events">
-        {events.map((event) => {
-          return (
-            <>
-              <SingleEvent event={event} />
-            </>
-          );
-        })}
+        <EventList events={events} favouriteComponent={AddFavourite} />
       </div>
     </div>
   );
 };
 
 export default AllEvents;
+
+// const url = `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=L6uec1PoCkdzN7Dp1iyAOPXogvXTwP5m`;
