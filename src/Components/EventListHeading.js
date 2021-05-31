@@ -3,7 +3,7 @@ import React from "react";
 const EventListHeading = (props) => {
   return (
     <div>
-      <p>{props.heading}</p>
+      <h2 style={{ color: "#2e26d5", lineSpacing: "2px" }}>{props.heading}</h2>
     </div>
   );
 };

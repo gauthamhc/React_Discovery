@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 import "./Styles/Events.css";
-import EventsHappening from "./Components/EventsHappening";
+import AllEvents from "./Components/AllEvents";
 
 function App() {
   return (
     <div className="Container">
-      <h2>Wonder Land</h2>
-      <EventsHappening />
+      <h3>Wonder Land</h3>
+      <AllEvents />
     </div>
   );
 }

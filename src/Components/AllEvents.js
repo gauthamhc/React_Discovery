@@ -33,7 +33,7 @@ const AllEvents = () => {
 
   return (
     <div>
-      <EventListHeading heading="events" />
+      <EventListHeading heading="Events" />
       <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="events">
         <EventList
@@ -42,10 +42,14 @@ const AllEvents = () => {
           handleFavouritesClick={addFavouriteEvent}
         />
       </div>
+      <div>
+        <EventListHeading heading="Favourites" />
+      </div>
+      <div className="events">
+        <EventList events={favourites} />
+      </div>
     </div>
   );
 };
 
 export default AllEvents;
-
-// const url = `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=L6uec1PoCkdzN7Dp1iyAOPXogvXTwP5m`;

@@ -1,5 +1,4 @@
 import React from "react";
-// import AddFavourite from "./AddFavourite";
 
 const EventList = (props) => {
   const FavouriteComponent = props.favouriteComponent;
@@ -8,10 +7,12 @@ const EventList = (props) => {
       {props.events.map((event, index) => {
         const venues = event._embedded.venues;
         const venue = venues.map((venue) => venue.city.name);
+        const eventType = event.classifications[0].segment.name;
 
         return (
           <div className="eventList" key={event.id}>
             <h4 className="eventName "> {event.name}</h4>
+            <p>Event: {eventType}</p>
             <p>Venue: {venue}</p>
             <img className="event-image" src={event.images[0].url} alt="" />
             <div
@@ -28,4 +29,3 @@ const EventList = (props) => {
 };
 
 export default EventList;
-// event.name._embedded.venues[0].state
