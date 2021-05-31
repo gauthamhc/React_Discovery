@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import AllEvents from "./AllEvents";
 
 const EventsHappening = () => {

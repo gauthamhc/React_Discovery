@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../Styles/Events.css";
 import EventList from "./EventList";
 import EventListHeading from "./EventListHeading";
 import SearchBox from "./SearchBox";
@@ -26,12 +25,22 @@ const AllEvents = () => {
   useEffect(() => {
     fetchAllEvents(searchValue);
   }, [searchValue]);
+
+  const addFavouriteEvent = (event) => {
+    const newFavList = [...favourites, event];
+    setFavourites(newFavList);
+  };
+
   return (
     <div>
       <EventListHeading heading="events" />
       <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="events">
-        <EventList events={events} favouriteComponent={AddFavourite} />
+        <EventList
+          events={events}
+          favouriteComponent={AddFavourite}
+          handleFavouritesClick={addFavouriteEvent}
+        />
       </div>
     </div>
   );

@@ -1,4 +1,6 @@
+import React from "react";
 import "./App.css";
+import "./Styles/Events.css";
 import EventsHappening from "./Components/EventsHappening";
 
 function App() {
