@@ -4,6 +4,7 @@ import EventList from "./EventList";
 import EventListHeading from "./EventListHeading";
 import SearchBox from "./SearchBox";
 import AddFavourite from "./AddFavourite";
+import FavouriteList from "./FavouriteList";
 
 const AllEvents = () => {
   const [events, setEvents] = useState([]);
@@ -26,9 +27,27 @@ const AllEvents = () => {
     fetchAllEvents(searchValue);
   }, [searchValue]);
 
+  useEffect(() => {
+    const eventsFav = JSON.parse(localStorage.getItem("event-fav"));
+    setFavourites(eventsFav);
+  }, []);
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("event-fav", JSON.stringify(items));
+  };
+
   const addFavouriteEvent = (event) => {
     const newFavList = [...favourites, event];
     setFavourites(newFavList);
+    saveToLocalStorage(newFavList);
+  };
+
+  const removeFavouriteEvent = (event) => {
+    const newFavList = favourites.filter(
+      (favourite) => favourite.id !== event.id
+    );
+    setFavourites(newFavList);
+    saveToLocalStorage(newFavList);
   };
 
   return (
@@ -46,7 +65,10 @@ const AllEvents = () => {
         <EventListHeading heading="Favourites" />
       </div>
       <div className="events">
-        <EventList events={favourites} />
+        <FavouriteList
+          events={favourites}
+          removeFavourite={removeFavouriteEvent}
+        />
       </div>
     </div>
   );
