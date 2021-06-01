@@ -1,6 +1,7 @@
 import React from "react";
 
 const FavouriteList = (props) => {
+  const RemoveComponent = props.removeComponent;
   return (
     <>
       {props.events.map((event, index) => {
@@ -16,11 +17,10 @@ const FavouriteList = (props) => {
             <img className="event-image" src={event.images[0].url} alt="" />
             <div
               className="favourite"
-              onClick={() => props.handleFavouritesClick(event)}
-            ></div>
-            <p onClick={() => props.removeFavourite(event.id)}>
-              Remove favorite
-            </p>
+              onClick={() => props.removeFavourite(event)}
+            >
+              <RemoveComponent />
+            </div>
           </div>
         );
       })}

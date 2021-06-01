@@ -5,6 +5,7 @@ import EventListHeading from "./EventListHeading";
 import SearchBox from "./SearchBox";
 import AddFavourite from "./AddFavourite";
 import FavouriteList from "./FavouriteList";
+import AddRemove from "./AddRemove";
 
 const AllEvents = () => {
   const [events, setEvents] = useState([]);
@@ -67,6 +68,7 @@ const AllEvents = () => {
       <div className="events">
         <FavouriteList
           events={favourites}
+          removeComponent={AddRemove}
           removeFavourite={removeFavouriteEvent}
         />
       </div>
