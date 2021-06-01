@@ -25,7 +25,9 @@ const AllEvents = () => {
   };
 
   useEffect(() => {
-    fetchAllEvents(searchValue);
+    setTimeout(() => {
+      fetchAllEvents(searchValue);
+    }, 500);
   }, [searchValue]);
 
   useEffect(() => {
