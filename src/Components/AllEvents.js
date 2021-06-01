@@ -25,9 +25,12 @@ const AllEvents = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    const identifier = setTimeout(() => {
       fetchAllEvents(searchValue);
     }, 500);
+    return () => {
+      clearTimeout(identifier);
+    };
   }, [searchValue]);
 
   useEffect(() => {
